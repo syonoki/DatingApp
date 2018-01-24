@@ -1,0 +1,8 @@
+1. dotnet api project 만들기
+    - > dotnet new webapi -o DatingApp.API -n DatingApp.API
+2. development mode 설정하기
+    - > $env:ASPNETCORE_ENVIRONMENT = "Development"
+3. watcher 사용
+    - csproj에 <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version= "2.0.0" />추가
+    - > dotnet watch run
+
