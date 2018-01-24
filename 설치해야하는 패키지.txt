@@ -1,0 +1,30 @@
+c#
+
+# vs code
+c# extensions
+msbuild project tools
+nuget package manager
+resharper 9 keybindings
+angular v5 snippets
+angular files
+angular language service
+bracket pair colorizer
+material icon theme
+path intellisense
+prettier
+tslint
+typescript hero -> files 에서 자동저장 체크해주면 파일 변할때 마다 자동 저장 해줌
+debugger for chrome
+angular2 switcher
+
+
+# node
+npm install bootstrap@3.3.7 --save
+npm install font-awesome --save
+
+설치후 사용하려면 .angular-cli.json에서 styles에 
+"../node_modules/bootstrap/dist/css/bootstrap.min.css",
+"../node_modules/font-awesome/css/font-awesome.min.css"
+
+이 두개를 추가해준다.
+만약 ng serve 돌아가고 있으면 적용할라면 ng server를 다시 시작해줘야함.
