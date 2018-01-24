@@ -6,3 +6,9 @@
     - csproj에 <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version= "2.0.0" />추가
     - > dotnet watch run
 
+4. dotnet entitiframework.core tool 사용
+    - csproj에 <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version= "2.0.0" />추가
+    - add-migration
+      > dotnet ef migrations add InitialCreate
+    - update-database
+      > dotnet ef database update

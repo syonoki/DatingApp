@@ -19,6 +19,9 @@ namespace DatingApp.API.Controllers
 
         }
 
+        // 동기로 실행할라면 그냥 IActionResult로 하면 되는데
+        // 비동기로 할라면 Task<IActionResult>로 하고 비동기 부분에 await + Async method로
+        // 바꿔줌.
         [HttpGet]
         public async Task<IActionResult> GetValues(){
             var values = await context_.Values.ToListAsync();
