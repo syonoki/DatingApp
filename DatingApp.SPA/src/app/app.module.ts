@@ -17,8 +17,7 @@ import { DxSelectBoxModule,  DxTextAreaModule,
   declarations: [
     AppComponent,
     ValueComponent,
-    NavComponent
-,
+    NavComponent,
     HomeComponent,
     RegisterComponent,
 ],
