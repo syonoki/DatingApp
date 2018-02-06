@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RequestOptions, Response, Headers, Http } from '@angular/http';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
@@ -17,15 +18,35 @@ export class AuthService {
                 localStorage.setItem('token', user.tokenString);
                 this.userToken = user.tokenString;
             }
-        });
+        }).catch(this.handleError);
     }
 
     register(model: any) {
-        return this.http.post(this.baseUrl + 'register', model, this.requestOptions());
+        return this.http
+            .post(this.baseUrl + 'register', model, this.requestOptions())
+            .catch(this.handleError);
     }
 
     private requestOptions() {
         const headers = new Headers({'Content-type': 'application/json'});
         return new RequestOptions({headers: headers});
+    }
+
+    private handleError(error: any) {
+        const applicationError = error.headers.get('Application-Error');
+        if (applicationError) {
+            return Observable.throw(applicationError);
+        }
+        const serverError = error.json();
+        let modelStatusErrors = '';
+        if (serverError) {
+            for (const key in serverError) {
+                if (serverError[key]) {
+                    modelStatusErrors += serverError[key] + '\n';
+                }
+            }
+        }
+
+        return Observable.throw(modelStatusErrors || 'Server error');
     }
 }
