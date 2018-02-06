@@ -24,4 +24,9 @@ export class HomeComponent implements OnInit {
       this.values = response.json();
     });
   }
+
+  cancelRegisterMode(registerMode: boolean) {
+    this.registerMode = registerMode;
+  }
+
 }
