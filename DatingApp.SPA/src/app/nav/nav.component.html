@@ -7,13 +7,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Dating App</a>
+      <a class="navbar-brand" href="#" [routerLink]="['/home']" routerLinkActive="router-link-active" >Dating App</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav" *ngIf="loggedIn()">
-        <li><a href="#">Matches</a></li>
-        <li><a href="#">Lists</a></li>
-        <li><a href="#">Messages</a></li>
+        <li><a [routerLink]="['/members']" routerLinkActive="router-link-active"  >Matches</a></li>
+        <li><a [routerLink]="['/lists']" routerLinkActive="router-link-active" >Lists</a></li>
+        <li><a [routerLink]="['/messages']" routerLinkActive="router-link-active" >Messages</a></li>
       </ul>
       <form *ngIf="!loggedIn()" #loginForm="ngForm" class="navbar-form navbar-right" (ngSubmit)="login()" >
         <div class="form-group">
@@ -26,9 +26,9 @@
       </form>
 
       <ul *ngIf="loggedIn()" class="nav navbar-nav navbar-right">
-        <li><a (click)="logout()">Logout</a></li>
+        <li id="btnlogout"><a (click)="logout()">Logout</a></li>
         <li class="dropdown" dropdown>
-          <a href="#" class="dropdown-toggle" dropdownToggle >Welcome 
+          <a (click)="false" class="dropdown-toggle" dropdownToggle >Welcome 
             {{authService.decodedToken?.unique_name | titlecase}} <span class="caret"></span></a>
           <ul class="dropdown-menu" *dropdownMenu>
             <li><a href="#"><i class="fa fa-user"></i> Edit Profile</a></li>

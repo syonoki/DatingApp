@@ -13,6 +13,12 @@ import { DxSelectBoxModule,  DxTextAreaModule,
     DxFormModule,  DxFormComponent, DxButtonModule } from 'devextreme-angular';
 import { AlertifyService } from './_services/alertify.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { MemberListComponent } from './member-list/member-list.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes.routing';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -21,6 +27,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     NavComponent,
     HomeComponent,
     RegisterComponent,
+    MemberListComponent,
+    ListsComponent,
+    MessagesComponent
 ],
   imports: [
     BrowserModule,
@@ -30,9 +39,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     DxTextAreaModule,
     DxFormModule,
     DxButtonModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [ AuthService, AlertifyService ],
+  providers: [ AuthService, AlertifyService, AuthGuard ], // Gaurd는 service처럼 처리
   bootstrap: [AppComponent]
 })
 export class AppModule { }
