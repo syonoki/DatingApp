@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { DxSelectBoxModule,  DxTextAreaModule,
     DxFormModule,  DxFormComponent, DxButtonModule } from 'devextreme-angular';
+import { AlertifyService } from './_services/alertify.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { DxSelectBoxModule,  DxTextAreaModule,
     DxFormModule,
     DxButtonModule
   ],
-  providers: [ AuthService ],
+  providers: [ AuthService, AlertifyService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
