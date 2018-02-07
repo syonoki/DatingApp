@@ -57,7 +57,7 @@ namespace DatingApp.API.Controllers
 
                 // generate token
                 var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(config_.GetSection("AppSEttings:Token").Value);
+                var key = Encoding.ASCII.GetBytes(config_.GetSection("AppSettings:Token").Value);
                 var tokenDescroptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]{

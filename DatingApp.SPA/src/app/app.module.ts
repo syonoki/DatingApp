@@ -12,7 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { DxSelectBoxModule,  DxTextAreaModule,
     DxFormModule,  DxFormComponent, DxButtonModule } from 'devextreme-angular';
 import { AlertifyService } from './_services/alertify.service';
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { AlertifyService } from './_services/alertify.service';
     DxSelectBoxModule,
     DxTextAreaModule,
     DxFormModule,
-    DxButtonModule
+    DxButtonModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [ AuthService, AlertifyService ],
   bootstrap: [AppComponent]

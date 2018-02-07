@@ -22,7 +22,9 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "alertifyjs": "^1.11.0",
+    "angular2-jwt": "^0.2.3",
     "bootstrap": "^3.3.7",
+    "bootswatch": "^3.3.7",
     "cldr-data": "^32.0.1",
     "core-js": "^2.4.1",
     "devextreme": "^17.2.5",
@@ -31,6 +33,7 @@
     "globalize": "^1.3.0",
     "jquery": "^3.3.1",
     "knockout": "^3.4.2",
+    "ngx-bootstrap": "^2.0.2",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
