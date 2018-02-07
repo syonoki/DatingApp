@@ -74,7 +74,7 @@ namespace DatingApp.API.Controllers
 
                 return Ok(new { tokenString });
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 return StatusCode(500, "Computer really says no!");
             }
