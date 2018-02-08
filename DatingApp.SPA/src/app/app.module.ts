@@ -13,12 +13,17 @@ import { DxSelectBoxModule,  DxTextAreaModule,
     DxFormModule,  DxFormComponent, DxButtonModule } from 'devextreme-angular';
 import { AlertifyService } from './_services/alertify.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { MemberListComponent } from './member-list/member-list.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes.routing';
 import { AuthGuard } from './_guards/auth.guard';
+import { UserService } from './_services/user.service';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { AuthModule } from './auth/auth.module';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,9 @@ import { AuthGuard } from './_guards/auth.guard';
     RegisterComponent,
     MemberListComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    MemberCardComponent,
+    MemberDetailComponent
 ],
   imports: [
     BrowserModule,
@@ -40,9 +47,12 @@ import { AuthGuard } from './_guards/auth.guard';
     DxFormModule,
     DxButtonModule,
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AuthModule,
+    TabsModule.forRoot(),
+    
   ],
-  providers: [ AuthService, AlertifyService, AuthGuard ], // Gaurd는 service처럼 처리
+  providers: [ AuthService, AlertifyService, AuthGuard, UserService ], // Gaurd는 service처럼 처리
   bootstrap: [AppComponent]
 })
 export class AppModule { }
