@@ -24,6 +24,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { AuthModule } from './auth/auth.module';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 
 @NgModule({
   declarations: [
@@ -49,10 +50,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     AuthModule,
-    TabsModule.forRoot(),
-    
+    TabsModule.forRoot()
   ],
-  providers: [ AuthService, AlertifyService, AuthGuard, UserService ], // Gaurd는 service처럼 처리
+  providers: [ AuthService, AlertifyService, AuthGuard, UserService, MemberDetailResolver], // Gaurd는 service처럼 처리
   bootstrap: [AppComponent]
 })
 export class AppModule { }
