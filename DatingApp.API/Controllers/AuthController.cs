@@ -49,35 +49,29 @@ namespace DatingApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]UserForLoginDto userForLoginDto)
         {
-            try
+           
+            var userFromRepo = await repo_.Login(userForLoginDto.Username, userForLoginDto.Password);
+
+            if (userFromRepo == null) return Unauthorized();
+
+            // generate token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(config_.GetSection("AppSettings:Token").Value);
+            var tokenDescroptor = new SecurityTokenDescriptor
             {
-                var userFromRepo = await repo_.Login(userForLoginDto.Username, userForLoginDto.Password);
+                Subject = new ClaimsIdentity(new Claim[]{
+                    new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
+                    new Claim(ClaimTypes.Name, userFromRepo.Username)
+                }),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha512Signature),
+            };
 
-                if (userFromRepo == null) return Unauthorized();
+            var token = tokenHandler.CreateToken(tokenDescroptor);
+            var tokenString = tokenHandler.WriteToken(token);
 
-                // generate token
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(config_.GetSection("AppSettings:Token").Value);
-                var tokenDescroptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]{
-                        new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                        new Claim(ClaimTypes.Name, userFromRepo.Username)
-                    }),
-                    Expires = DateTime.Now.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
-                        SecurityAlgorithms.HmacSha512Signature),
-                };
-
-                var token = tokenHandler.CreateToken(tokenDescroptor);
-                var tokenString = tokenHandler.WriteToken(token);
-
-                return Ok(new { tokenString });
-            }
-            catch (System.Exception e)
-            {
-                return StatusCode(500, "Computer really says no!");
-            }
+            return Ok(new { tokenString });
         }
     }
 }
