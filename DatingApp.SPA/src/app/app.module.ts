@@ -25,6 +25,8 @@ import { AuthModule } from './auth/auth.module';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 @NgModule({
   declarations: [
@@ -50,9 +52,17 @@ import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     AuthModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    NgxGalleryModule
   ],
-  providers: [ AuthService, AlertifyService, AuthGuard, UserService, MemberDetailResolver], // Gaurd는 service처럼 처리
+  providers: [
+    AuthService,
+    AlertifyService,
+    AuthGuard,
+    UserService,
+    MemberDetailResolver,
+    MemberListResolver
+  ], // Gaurd는 service처럼 처리
   bootstrap: [AppComponent]
 })
 export class AppModule { }
